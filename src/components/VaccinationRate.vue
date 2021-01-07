@@ -1,33 +1,49 @@
 <template>
-    <div class="container has-text-centered">
-        <h1 class="title">
-            {{ totalFormatted }}
-        </h1>
-        <h2 class="subtitle">
-            Estimated people vaccinated
-        </h2>
+    <div class="columns">
+        <div class="column is-one-third-desktop"></div>
+        <div class="column is-one-third-desktop">
+            <apexchart type="radialBar" :series="series" :options="options"></apexchart>
+            <p>1 Person vaccinated every {{rate}} seconds</p>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator';
-import {vxm} from '@/store';
+import {Component} from 'vue-property-decorator';
+import VueApexCharts from 'vue-apexcharts';
 import DataComponent from '@/components/DataComponent';
 
-@Component
+@Component({
+    components: {apexchart: VueApexCharts},
+})
 export default class TotalVaccinationsHero extends DataComponent {
-    public total = 0
-    public rate = 0
-    public totalFormatted = ''
-    private interval?: number
+    public targetRate = 2000000 / 7 / 24 / 60 / 60;
+    public rate = 0;
+    private flicker = -1;
+    private interval = 0;
+
+    public options = {
+        colors: ['#009639'],
+        plotOptions: {
+            radialBar: {
+                startAngle: -135,
+                endAngle: 135,
+                dataLabels: {
+                    name: {
+                        show: false,
+                    },
+                    value: {
+                        show: false,
+                    },
+                },
+            },
+        },
+    };
+
+    public series = [45];
 
     mounted() {
         this.loadData().then(() => this.start());
-    }
-
-    setTotal(total: number) {
-        this.total = total;
-        this.totalFormatted = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 
     beforeDestroy() {
@@ -35,33 +51,18 @@ export default class TotalVaccinationsHero extends DataComponent {
     }
 
     private start() {
-        this.setTotal(this.vaccinations.total);
         this.rate = Math.floor(this.vaccinations.rate / 100) / 10;
+        this.series = [(this.rate / this.targetRate) * 100];
 
         this.interval = setInterval(() => {
-            this.setTotal(this.total + 1);
-        }, this.vaccinations.rate);
+            this.series = [this.series[0] + this.flicker];
+            this.flicker *= -1;
+        }, 300);
     }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-    margin: 40px 0 0;
-}
 
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    display: inline-block;
-    margin: 0 10px;
-}
-
-a {
-    color: #42b983;
-}
 </style>

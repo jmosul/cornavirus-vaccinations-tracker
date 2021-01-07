@@ -9,12 +9,16 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "apexcharts": "^3.23.1",
     "core-js": "^3.6.5",
+    "date-fns": "^2.16.1",
     "vue": "^2.6.11",
+    "vue-apexcharts": "^1.6.0",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^8.4.2",
     "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "vuex": "^3.4.0",
+    "vuex-class-component": "^2.3.5"
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",
@@ -30,12 +34,16 @@
     "@vue/eslint-config-standard": "^5.1.2",
     "@vue/eslint-config-typescript": "^5.0.2",
     "@vue/test-utils": "^1.0.3",
+    "buefy": "^0.9.4",
     "eslint": "^6.7.2",
+    "eslint-config-jmosul": "github:jmosul/eslint-config-jmosul#master",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^6.2.2",
+    "sass": "^1.32.2",
+    "sass-loader": "^10.1.0",
     "typescript": "~3.9.3",
     "vue-template-compiler": "^2.6.11"
   }

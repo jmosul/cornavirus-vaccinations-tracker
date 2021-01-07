@@ -1,25 +1,51 @@
-import VaccinationGroup from '@/models/VaccinationGroup';
-import {NhsVaccinationGroup} from '@/store/vaccinations/types';
+import Collection from '@/models/Collection';
+import VaccinationPeriod from '@/models/VaccinationPeriod';
 
-export default class GroupsCollection {
-    private groups: VaccinationGroup[];
+export default class PeriodsCollection extends Collection {
+    protected items: VaccinationPeriod[] = [];
 
-    /**
-     * @param {NhsVaccinationGroup[]} groups
-     */
-    constructor(groups: NhsVaccinationGroup[]) {
-        this.groups = groups.map((group: NhsVaccinationGroup) => new VaccinationGroup(group));
+    constructor(models: VaccinationPeriod[] = []) {
+        super();
+
+        this.items = models;
     }
 
-    get vaccinated(): number {
-        return this.groups.reduce((total: number, {dose1}: VaccinationGroup) => total + dose1, 0);
+    get total(): number {
+        return this.items.reduce(
+            (total: number, {groups}: VaccinationPeriod) => total + groups.vaccinated,
+            0,
+        );
     }
 
-    get first() {
-        return this.groups[0];
+    get first(): VaccinationPeriod {
+        return this.items[0];
     }
 
-    get last() {
-        return this.groups[this.groups.length - 1];
+    get last(): VaccinationPeriod {
+        return this.items[this.count - 1];
+    }
+
+    get rate(): number {
+        const startMs = this.first.date.getTime();
+        const endMs = this.last.date.getTime();
+
+        return (endMs - startMs) / this.total;
+    }
+
+    get perMs(): number {
+        const startSeconds = Math.floor(this.first.date.getTime());
+        const endSeconds = Math.floor(this.last.date.getTime());
+
+        const totalSeconds = endSeconds - startSeconds;
+
+        return this.total / totalSeconds;
+    }
+
+    slice(num: number): PeriodsCollection {
+        const items = this.items.slice(Math.max(this.count - num, 0));
+
+        console.log('slic', items);
+
+        return new PeriodsCollection(items);
     }
 }

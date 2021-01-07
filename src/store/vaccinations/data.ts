@@ -1,31 +1,23 @@
-export interface NhsVaccinationGroup {
-    group: string;
-    dose1: number;
-    dose2: number;
-}
-
-export interface NhsVaccinationPeriod {
-    date: string;
-    timestamp: number;
-    groups: Array<NhsVaccinationGroup>;
-}
-
-export const vaccinationData = [
+export default [
     {
         date: '2020-12-07',
         timestamp: 1607299200,
         groups: [
             {
-                group: '17-79',
+                group: 'england',
                 dose1: 0,
                 dose2: 0,
             },
             {
-                group: '80+',
+                group: 'scotland',
                 dose1: 0,
                 dose2: 0,
             },
-
+            {
+                group: 'wales',
+                dose1: 0,
+                dose2: 0,
+            },
         ],
     },
     {
@@ -33,16 +25,41 @@ export const vaccinationData = [
         timestamp: 1609027200,
         groups: [
             {
-                group: '17-79',
-                dose1: 261561,
+                group: 'england',
+                dose1: 804325,
                 dose2: 0,
             },
             {
-                group: '80+',
-                dose1: 524439,
+                group: 'scotland',
+                dose1: 56500,
                 dose2: 0,
             },
-
+            {
+                group: 'wales',
+                dose1: 35335,
+                dose2: 0,
+            },
+        ],
+    },
+    {
+        date: '2021-01-03',
+        timestamp: 1609632000,
+        groups: [
+            {
+                group: 'england',
+                dose1: 308541,
+                dose2: 0,
+            },
+            {
+                group: 'scotland',
+                dose1: 56500,
+                dose2: 0,
+            },
+            {
+                group: 'wales',
+                dose1: 0,
+                dose2: 0,
+            },
         ],
     },
 ];

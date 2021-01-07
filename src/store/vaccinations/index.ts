@@ -1,40 +1,48 @@
-import {action, VuexModule} from 'vuex-class-component';
+import {action, createModule} from 'vuex-class-component';
 import VaccinationPeriod from '@/models/VaccinationPeriod';
 import data from './data';
 import {NhsVaccinationPeriod} from '@/store/vaccinations/types';
+import PeriodsCollection from '@/models/PeriodsCollection';
 
-export class VaccinationStore extends VuexModule {
-    private _periods: VaccinationPeriod[] = [];
+export const VuexModule = createModule({
+    namespaced: 'vaccinations',
+    strict: false,
+});
+
+export default class VaccinationStore extends VuexModule {
+    private _periods: PeriodsCollection = new PeriodsCollection();
+    private _loaded = false;
+    private velocityHistory = 3;
 
     @action async loadData() {
-        this.periods = data.map((period: NhsVaccinationPeriod) => new VaccinationPeriod(period));
+        if (!this._loaded) {
+            this.periods = new PeriodsCollection(
+                data.map((period: NhsVaccinationPeriod) => new VaccinationPeriod(period)),
+            );
+        }
+
+        this._loaded = true;
     }
 
-    set periods(periods: VaccinationPeriod[]) {
+    set periods(periods: PeriodsCollection) {
         this._periods = periods;
     }
 
-    get firstPeriod(): VaccinationPeriod {
-        return this._periods[0];
-    }
-
-    get lastPeriod(): VaccinationPeriod {
-        return this._periods[this._periods.length - 1];
+    get periods(): PeriodsCollection {
+        return this._periods;
     }
 
     get total(): number {
-        return this._periods.reduce(
-            (total: number, {groups}: VaccinationPeriod) => total + groups.vaccinated,
-            0,
-        );
+        const msSince = (new Date()).getTime() - this.periods.last.date.getTime();
+
+        return this.periods.total + Math.floor(msSince * this.velocityPeriods.perMs);
     }
 
     get rate(): number {
-        const startSeconds = Math.floor(this.firstPeriod.date.getTime() / 1000);
-        const endSeconds = Math.floor(this.lastPeriod.date.getTime() / 1000);
+        return this.velocityPeriods.rate;
+    }
 
-        const totalSeconds = endSeconds - startSeconds;
-
-        return this.total / totalSeconds;
+    get velocityPeriods(): PeriodsCollection {
+        return this.periods.slice(this.velocityHistory);
     }
 }

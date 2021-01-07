@@ -1,13 +1,27 @@
 import {fromUnixTime} from 'date-fns';
-import {NhsVaccinationData, NhsVaccinationGroup} from '@/store/vaccinations';
-import VaccinationGroup from '@/models/VaccinationGroup';
+import {NhsVaccinationPeriod} from '@/store/vaccinations/types';
+import GroupsCollection from '@/models/GroupsCollection';
 
-export default class DataPeriod {
-    private date: Date;
-    private groups: Array<VaccinationGroup>;
+export default class VaccinationPeriod {
+    private _date: Date
+    private _groups: GroupsCollection
 
-    constructor(props: NhsVaccinationData) {
-        this.date = fromUnixTime(props.timestamp);
-        this.groups = props.groups.map((group: NhsVaccinationGroup) => new VaccinationGroup(group));
+    constructor(props: NhsVaccinationPeriod) {
+        this._date = fromUnixTime(props.timestamp);
+        this._groups = new GroupsCollection(props.groups);
+    }
+
+    /**
+     * @return Date
+     */
+    get date(): Date {
+        return this._date;
+    }
+
+    /**
+     * @return GroupsCollection
+     */
+    get groups(): GroupsCollection {
+        return this._groups;
     }
 }
