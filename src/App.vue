@@ -10,7 +10,7 @@
                   <div class="container">
                       <ul>
                           <li class="is-active">
-                              <a href="#about">About</a>
+                              <a href="#about">*About these numbers</a>
                           </li>
                       </ul>
                   </div>

@@ -8,6 +8,32 @@ export default class PeriodsCollection extends Collection {
         super();
 
         this.items = models;
+        this.items.unshift(new VaccinationPeriod({
+            date: '2020-12-07',
+            timestamp: 1607299200,
+            groups: [
+                {
+                    group: 'England',
+                    dose1: 0,
+                    dose2: 0,
+                },
+                {
+                    group: 'Northern Ireland',
+                    dose1: 0,
+                    dose2: 0,
+                },
+                {
+                    group: 'Scotland',
+                    dose1: 0,
+                    dose2: 0,
+                },
+                {
+                    group: 'Wales',
+                    dose1: 0,
+                    dose2: 0,
+                },
+            ],
+        }));
     }
 
     get total(): number {
@@ -43,8 +69,6 @@ export default class PeriodsCollection extends Collection {
 
     slice(num: number): PeriodsCollection {
         const items = this.items.slice(Math.max(this.count - num, 0));
-
-        console.log('slic', items);
 
         return new PeriodsCollection(items);
     }

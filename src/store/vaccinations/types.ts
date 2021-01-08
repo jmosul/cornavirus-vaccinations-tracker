@@ -9,3 +9,11 @@ export interface NhsVaccinationPeriod {
     timestamp: number;
     groups: Array<NhsVaccinationGroup>;
 }
+
+export interface GovCoronavirusVaccinations {
+    date: string;
+    areaName: string;
+    newPeopleReceivingFirstDose: number;
+    newPeopleReceivingSecondDose: number;
+    timestamp?: number;
+}
