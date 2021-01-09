@@ -31,17 +31,20 @@
                 </div>
             </div>
             <div class="container p-2">
-
-                <p>The aim of this tracker is not to provide accurate updated to the number of people vaccinated.</p>
                 <p>
+                    This tracker estimates the current progress of the NHS vaccination program based on the weekly
+                    official figures. I should not be considered as accurate or official update to the number of people
+                    vaccinated.
+                </p>
+                <p class="is-size-5">
                     But instead perhaps it can offer some
                     <span class="has-text-primary has-text-weight-bold">hope</span>
                     as we work our way back towards normality.
                 </p>
                 <p>
-                    It has been a long and difficult time since the start of the pandemic, but as can be demonstrated here;
-                    the end is in sight. With each tick of the tracker we are getting that little closer to returning to our
-                    lives, getting our of our homes and seeing our love ones.
+                    It has been a long and difficult time since the start of the pandemic, but as can be demonstrated
+                    here; the end is in sight. With each tick of the tracker we are getting that little closer to
+                    returning to our lives, getting our of our homes and seeing our love ones.
                 </p>
                 <h2 class="subtitle">
                     How do we work out these numbers?
@@ -57,12 +60,13 @@
                     </a>.
                 </p>
                 <p>
-                    Using this data, we calculate the speed at which vaccinations are taking place since the beginning of the
-                    vaccination program on the 7th December 2020. The calculations are simple and should only be used as a
-                    guide to the speed of the NHS's ambitious vaccination program.
+                    Using this data, we calculate the speed at which vaccinations are taking place since the beginning
+                    of the vaccination program on the 7th December 2020. The calculations are simple and should only be
+                    used as a guide to the speed of the NHS's ambitious vaccination program.
                 </p>
                 <p>
-                    For official figures and updates please see the link above to the official figures which are posted weekly.
+                    For official figures and updates please see the link above to the official figures which are posted
+                    weekly.
                 </p>
 
                 <h2 class="subtitle">Stay Safe and Stay Hopeful</h2>
@@ -127,7 +131,7 @@ $primary-light: #0072ce;
 $primary-dark: #003087;
 $primary-invert: #ffffff;
 
-$info: #41B6E6;
+$info: #41b6e6;
 
 // Lists and maps
 $custom-colors: null !default;
