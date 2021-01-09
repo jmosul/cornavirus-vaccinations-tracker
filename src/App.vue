@@ -12,7 +12,7 @@
                     <div class="container">
                         <ul>
                             <li class="is-active">
-                                <a href="#about">*About these numbers</a>
+                                <a href="#" v-scroll-to="'#about'">*About these numbers</a>
                             </li>
                         </ul>
                     </div>
@@ -20,7 +20,7 @@
             </div>
         </section>
 
-        <main id="#about">
+        <main id="about">
             <div class="hero is-info">
                 <div class="hero-body">
                     <div class="container">
