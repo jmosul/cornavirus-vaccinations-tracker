@@ -4,14 +4,13 @@
             {{ totalFormatted }}
         </h1>
         <h2 class="subtitle">
-            Estimated people vaccinated
+            Estimated people vaccinated*
         </h2>
     </div>
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator';
-import {vxm} from '@/store';
+import {Component} from 'vue-property-decorator';
 import DataComponent from '@/components/DataComponent';
 
 @Component

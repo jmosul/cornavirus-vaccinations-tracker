@@ -3,7 +3,7 @@
         <div class="column is-one-third-desktop"></div>
         <div class="column is-one-third-desktop">
             <apexchart type="radialBar" :series="series" :options="options"></apexchart>
-            <h2 class="subtitle">1 Person vaccinated every {{rate}} seconds*</h2>
+            <h2 class="subtitle">1 Person vaccinated every {{rate}} seconds</h2>
         </div>
     </div>
 </template>
