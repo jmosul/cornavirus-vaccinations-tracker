@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <section class="hero is-primary is-fullheight">
-            <div class="hero-header">
+            <div class="hero-header is-hidden-mobile">
                 <h3 class="subtitle mt-2">We're getting there!</h3>
             </div>
             <div class="hero-body">
@@ -67,6 +67,19 @@
                 <p>
                     For official figures and updates please see the link above to the official figures which are posted
                     weekly.
+                </p>
+                <h4>Target Source</h4>
+                <p>
+                    The target of 15 million vaccinations by 14th February 2021 is based on the government's target
+                    of 15 million vaccination by Mid-February
+                    <a
+                        class="is-size-7"
+                        href="https://www.bbc.co.uk/news/health-55274833"
+                        target="_blank"
+                        title="BBC News | Covid vaccine: How will the UK jab millions of people?"
+                    >
+                        (source: Covid vaccine: How will the UK jab millions of people?).
+                    </a>
                 </p>
 
                 <h2 class="subtitle">Stay Safe and Stay Hopeful</h2>
