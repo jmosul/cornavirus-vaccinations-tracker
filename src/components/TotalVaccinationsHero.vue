@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-3">
+    <div>
         <h1 class="title">
             {{ totalFormatted }}
         </h1>

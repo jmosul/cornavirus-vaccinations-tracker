@@ -1,5 +1,5 @@
 <template>
-    <div class="columns mt-5 vaccination-target">
+    <div class="columns mt-2 vaccination-target">
         <div class="column is-offset-one-third-desktop is-one-third-desktop">
             <b-progress
                 :value="total"

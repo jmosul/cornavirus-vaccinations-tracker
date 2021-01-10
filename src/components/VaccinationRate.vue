@@ -1,9 +1,10 @@
 <template>
     <div class="columns">
-        <div class="column is-one-third-desktop"></div>
-        <div class="column is-one-third-desktop">
+        <div
+            class="column p-0 is-offset-one-third-desktop is-one-third-desktop is-offset-one-fifths-tablet is-three-fifths-tablet"
+        >
             <apexchart type="radialBar" :series="series" :options="options"></apexchart>
-            <h2 class="subtitle">1 Person vaccinated every {{rate}} seconds</h2>
+            <h2 class="subtitle mb-0">1 Person vaccinated every {{rate}} seconds</h2>
         </div>
     </div>
 </template>
