@@ -25,7 +25,7 @@ export default class TargetProgress extends DataComponent {
     private interval?: number
     private percentage = 0;
     private formattedTargetDate = '';
-    private formattedTarget = '';
+    private formattedTarget = ''
 
     mounted() {
         this.loadData().then(() => this.start());
@@ -51,7 +51,7 @@ export default class TargetProgress extends DataComponent {
         this.setTotal(this.vaccinations.total);
         this.rate = Math.floor(this.vaccinations.rate / 100) / 10;
 
-        this.interval = setInterval(() => {
+        this.interval = window.setInterval(() => {
             this.setTotal(this.total + 1);
         }, this.vaccinations.rate);
     }

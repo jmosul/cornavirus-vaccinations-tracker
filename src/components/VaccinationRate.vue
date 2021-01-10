@@ -58,7 +58,7 @@ export default class TotalVaccinationsHero extends DataComponent {
         this.rate = Math.floor(this.vaccinations.rate / 100) / 10;
         this.series = [(this.rate / this.targetRate) * 100];
 
-        this.interval = setInterval(() => {
+        this.interval = window.setInterval(() => {
             this.series = [this.series[0] + this.flicker];
             this.flicker *= -1;
         }, 300);

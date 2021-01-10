@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "apexcharts": "^3.23.1",
+    "aws-amplify": "^3.3.14",
+    "aws-amplify-vue": "^2.1.4",
     "core-js": "^3.6.5",
     "date-fns": "^2.16.1",
     "vue": "^2.6.11",
