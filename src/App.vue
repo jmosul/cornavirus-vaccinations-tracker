@@ -35,6 +35,9 @@ import Hero from '@/components/Hero.vue';
 import DataComponent from '@/components/DataComponent';
 import About from '@/components/About.vue';
 import AppFooter from '@/components/AppFooter.vue';
+import {Analytics} from 'aws-amplify';
+
+Analytics.record({name: 'albumVisit'});
 
 @Component({
     components: {
@@ -45,7 +48,9 @@ import AppFooter from '@/components/AppFooter.vue';
     },
 })
 export default class App extends DataComponent {
-
+    mounted() {
+        Analytics.record({name: 'appVisit'});
+    }
 }
 
 </script>

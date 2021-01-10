@@ -1,1 +1,14 @@
-{}
+{
+	"auth": {
+		"cognito7f5f840a": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"analytics": {
+		"cornavirus-vaccinations-tracker": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}

@@ -1,0 +1,20 @@
+{
+    "appName": "cornavirus-vaccinations-tracker",
+    "roleName": "pinpointLambdaRole730bf4d8",
+    "cloudWatchPolicyName": "cloudWatchPolicy730bf4d8",
+    "pinpointPolicyName": "pinpointPolicy730bf4d8",
+    "authPolicyName": "pinpoint_amplify_730bf4d8",
+    "unauthPolicyName": "pinpoint_amplify_730bf4d8",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}
