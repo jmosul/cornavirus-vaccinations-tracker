@@ -1,0 +1,20 @@
+{
+    "appName": "coronaVaccTracker",
+    "roleName": "pinpointLambdaRoleb28f81f9",
+    "cloudWatchPolicyName": "cloudWatchPolicyb28f81f9",
+    "pinpointPolicyName": "pinpointPolicyb28f81f9",
+    "authPolicyName": "pinpoint_amplify_b28f81f9",
+    "unauthPolicyName": "pinpoint_amplify_b28f81f9",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

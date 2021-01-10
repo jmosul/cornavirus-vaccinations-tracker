@@ -6,7 +6,7 @@
 		}
 	},
 	"analytics": {
-		"cornavirus-vaccinations-tracker": {
+		"coronaVaccTracker": {
 			"service": "Pinpoint",
 			"providerPlugin": "awscloudformation"
 		}
