@@ -2,7 +2,7 @@ import {action, createModule} from 'vuex-class-component';
 import VaccinationPeriod from '@/models/VaccinationPeriod';
 import {GovCoronavirusVaccinations, NhsVaccinationGroup, NhsVaccinationPeriod} from '@/store/vaccinations/types';
 import PeriodsCollection from '@/models/PeriodsCollection';
-import importedData from './data_2021_01_11';
+import Cov19API, {StructureType} from '@publichealthengland/uk-covid19';
 
 export const VuexModule = createModule({
     namespaced: 'vaccinations',
@@ -49,12 +49,29 @@ const formatData = function(data: GovCoronavirusVaccinations[]) {
 };
 
 const getData = async function(): Promise<PeriodsCollection> {
-    // const dataUrl = 'https://coronavirus.data.gov.uk/api/v1/data?filters=areaType=nation&structure=%7B%22date%22:%22date%22,%22areaName%22:%22areaName%22,%22cumPeopleVaccinatedFirstDoseByPublishDate%22:%22cumPeopleVaccinatedFirstDoseByPublishDate%22%7D';
-    // const data = await fetch(dataUrl, {mode: 'no-cors'})
-    //     .then((response) => response.json())
-    //     .then(({data}) => data);
+    const structure = {
+        date: 'date',
+        areaName: 'areaName',
+        cumPeopleVaccinatedFirstDoseByPublishDate: 'cumPeopleVaccinatedFirstDoseByPublishDate',
+    };
 
-    return formatData(importedData);
+    const filters = ['areaType=nation'];
+
+    const api = new Cov19API({
+        filters,
+        structure,
+        latestBy: 'cumPeopleVaccinatedFirstDoseByPublishDate',
+    });
+
+    const data = await api.getJSON().then((json) => json.data);
+
+    return formatData(data.map((structure: StructureType) => {
+        return {
+            date: structure.date,
+            areaName: structure.areaName,
+            cumPeopleVaccinatedFirstDoseByPublishDate: parseInt(structure.cumPeopleVaccinatedFirstDoseByPublishDate),
+        } as GovCoronavirusVaccinations;
+    }));
 };
 
 export default class VaccinationStore extends VuexModule {

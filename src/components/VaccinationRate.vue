@@ -53,9 +53,8 @@ export default class TotalVaccinationsHero extends DataComponent {
     }
 
     private start() {
-        this.setTargetRate();
-
         this.rate = Math.floor(this.vaccinations.rate / 100) / 10;
+        this.setTargetRate();
         this.series = [(this.rate / this.targetRate) * 100];
 
         this.interval = window.setInterval(() => {
@@ -67,7 +66,7 @@ export default class TotalVaccinationsHero extends DataComponent {
     private setTargetRate() {
         const timePeriod = differenceInSeconds(new Date(this.vaccinations.targetTime), this.vaccinations.periods.first.date);
 
-        this.targetRate = this.vaccinations.target / timePeriod;
+        this.targetRate = this.rate + (timePeriod / this.vaccinations.target);
     }
 }
 </script>
