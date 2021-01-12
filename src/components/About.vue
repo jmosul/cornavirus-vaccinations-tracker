@@ -11,7 +11,7 @@
         </div>
         <div class="container p-2">
             <p>
-                This tracker estimates the current progress of the NHS vaccination program based on the weekly
+                This tracker estimates the current progress of the NHS vaccination program based on the daily
                 official figures. It should not be considered as accurate or official update to the number of people
                 vaccinated.
             </p>
@@ -46,7 +46,7 @@
             </p>
             <p>
                 For official figures and updates please see the link above to the official figures which are posted
-                weekly.
+                daily.
             </p>
             <h4>Target Source</h4>
             <p>
