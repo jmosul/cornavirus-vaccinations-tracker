@@ -13,7 +13,6 @@ export interface NhsVaccinationPeriod {
 export interface GovCoronavirusVaccinations {
     date: string;
     areaName: string;
-    newPeopleReceivingFirstDose: number;
-    newPeopleReceivingSecondDose: number;
+    cumPeopleVaccinatedFirstDoseByPublishDate: number;
     timestamp?: number;
 }
