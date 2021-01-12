@@ -11,9 +11,9 @@
         </div>
         <div class="container p-2">
             <p>
-                This tracker estimates the current progress of the NHS vaccination program based on the daily
-                official figures. It should not be considered as accurate or official update to the number of people
-                vaccinated.
+                This tracker estimates the current progress of the NHS vaccination program based on the daily figures
+                of people receiving the first does of the vaccine.
+                It should not be considered as accurate or official update to the number of people vaccinated.
             </p>
             <p class="is-size-5">
                 But instead perhaps it can offer some
