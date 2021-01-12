@@ -2,8 +2,7 @@ import {action, createModule} from 'vuex-class-component';
 import VaccinationPeriod from '@/models/VaccinationPeriod';
 import {GovCoronavirusVaccinations, NhsVaccinationGroup, NhsVaccinationPeriod} from '@/store/vaccinations/types';
 import PeriodsCollection from '@/models/PeriodsCollection';
-
-const dataUrl = 'https://coronavirus.data.gov.uk/api/v1/data?filters=areaType=nation&structure=%7B%22date%22:%22date%22,%22areaName%22:%22areaName%22,%22newPeopleReceivingFirstDose%22:%22newPeopleReceivingFirstDose%22,%22newPeopleReceivingSecondDose%22:%22newPeopleReceivingSecondDose%22%7D';
+import importedData from './data_2021_01_11';
 
 export const VuexModule = createModule({
     namespaced: 'vaccinations',
@@ -35,8 +34,8 @@ const formatData = function(data: GovCoronavirusVaccinations[]) {
     const formattedData: VaccinationPeriod[] = Object.values(squashedData).map((periodData) => {
         const groups = periodData.map((group) => ({
             group: group.areaName,
-            dose1: group.newPeopleReceivingFirstDose,
-            dose2: group.newPeopleReceivingSecondDose,
+            dose1: group.cumPeopleVaccinatedFirstDoseByPublishDate,
+            dose2: 0,
         } as NhsVaccinationGroup));
 
         return {
@@ -50,11 +49,12 @@ const formatData = function(data: GovCoronavirusVaccinations[]) {
 };
 
 const getData = async function(): Promise<PeriodsCollection> {
-    const data = await fetch(dataUrl)
-        .then((response) => response.json())
-        .then(({data}) => data);
+    // const dataUrl = 'https://coronavirus.data.gov.uk/api/v1/data?filters=areaType=nation&structure=%7B%22date%22:%22date%22,%22areaName%22:%22areaName%22,%22cumPeopleVaccinatedFirstDoseByPublishDate%22:%22cumPeopleVaccinatedFirstDoseByPublishDate%22%7D';
+    // const data = await fetch(dataUrl, {mode: 'no-cors'})
+    //     .then((response) => response.json())
+    //     .then(({data}) => data);
 
-    return formatData(data);
+    return formatData(importedData);
 };
 
 export default class VaccinationStore extends VuexModule {
