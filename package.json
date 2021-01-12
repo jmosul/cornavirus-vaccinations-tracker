@@ -9,6 +9,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@publichealthengland/uk-covid19": "^1.2.5",
     "apexcharts": "^3.23.1",
     "aws-amplify": "^3.3.14",
     "aws-amplify-vue": "^2.1.4",
