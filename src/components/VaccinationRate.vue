@@ -4,7 +4,7 @@
             class="column p-0 is-offset-one-third-desktop is-one-third-desktop is-offset-one-fifths-tablet is-three-fifths-tablet"
         >
             <apexchart type="radialBar" :series="series" :options="options"></apexchart>
-            <h2 class="subtitle mb-0">1 Person vaccinated every {{rate}} seconds</h2>
+            <h2 class="subtitle mb-0">1 Person vaccinated every {{rate / 10}} seconds</h2>
         </div>
     </div>
 </template>
@@ -53,14 +53,14 @@ export default class TotalVaccinationsHero extends DataComponent {
     }
 
     private start() {
-        this.rate = Math.floor(this.vaccinations.rate / 100) / 10;
+        this.rate = Math.floor(this.vaccinations.rate / 100);
         this.setTargetRate();
         this.series = [(this.rate / this.targetRate) * 100];
 
         this.interval = window.setInterval(() => {
             this.series = [this.series[0] + this.flicker];
             this.flicker *= -1;
-        }, 300);
+        }, 200);
     }
 
     private setTargetRate() {
