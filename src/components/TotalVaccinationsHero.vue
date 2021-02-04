@@ -47,7 +47,9 @@ export default class TotalVaccinationsHero extends DataComponent {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     h1 {
-        font-size: 4em;
+        font-size: 3.75em;
         text-shadow: 0 1px 10px rgba(255, 255, 255, 0.4);
+        white-space: nowrap;
+        text-align: center;
     }
 </style>
