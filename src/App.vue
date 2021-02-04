@@ -10,7 +10,7 @@
             <div class="hero-foot pl-6 pr-6">
                 <nav class="tabs is-boxed is-fullwidth">
                     <div class="container">
-                        <ul>
+                        <ul class="about__link">
                             <li class="is-active">
                                 <a href="#" v-scroll-to="'#about'">*About these numbers</a>
                             </li>
@@ -144,6 +144,12 @@ $link-focus-border: $primary;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+
+    .about__link {
+        .is-active {
+            color: $primary;
+        }
+    }
 }
 
 p {
