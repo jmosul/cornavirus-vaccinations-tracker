@@ -31,11 +31,11 @@
             <p>
                 All data used on this page comes from the official government statistics published at
                 <a
-                    href="https://coronavirus.data.gov.uk/details/healthcare"
+                    href="https://coronavirus.data.gov.uk/details/vaccinations"
                     title="Coronavirus data.gov.uk"
                     target="_blank"
                 >
-                    https://coronavirus.data.gov.uk/details/healthcare
+                    coronavirus.data.gov.uk/details/vaccinations
                 </a>.
             </p>
             <p>
@@ -50,15 +50,15 @@
             </p>
             <h4>Target Source</h4>
             <p>
-                The target of 15 million vaccinations by 14th February 2021 is based on the government's target
-                of 15 million vaccination by Mid-February
+                The targets come from BBC's extrapolated figures from the NHSEI figures
+                <br>
                 <a
                     class="is-size-7"
-                    href="https://www.bbc.co.uk/news/health-55274833"
+                    href="https://www.bbc.co.uk/news/health-55045639"
                     target="_blank"
-                    title="BBC News | Covid vaccine: How will the UK jab millions of people?"
+                    title="BBC News | Covid: When will I get the vaccine?"
                 >
-                    (source: BBC News: How will the UK jab millions of people?).
+                    (source: BBC News: Covid When will I get the vaccine?).
                 </a>
             </p>
 

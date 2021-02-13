@@ -74,11 +74,31 @@ const getData = async function(): Promise<PeriodsCollection> {
     }));
 };
 
+export interface Target {
+    amount: number;
+    progress: number;
+    date: number;
+    type: string;
+}
+
 export default class VaccinationStore extends VuexModule {
     private _periods: PeriodsCollection = new PeriodsCollection();
     private _loaded = false;
     private velocityHistory = 3;
-    private _target = 15000000;
+    private _targets: Target[] = [
+        {
+            amount: 15000000,
+            progress: 0,
+            date: Date.parse('2021-02-14'),
+            type: 'is-danger',
+        },
+        {
+            amount: 32200000,
+            progress: 0,
+            date: Date.parse('2021-04-30'),
+            type: 'is-warning',
+        },
+    ];
 
     private _loadingPromise?: Promise<boolean>
 
@@ -108,12 +128,30 @@ export default class VaccinationStore extends VuexModule {
         return this._periods;
     }
 
-    get target(): number {
-        return this._target;
+    get targets(): Target[] {
+        let useNextTarget = true;
+
+        return this._targets.filter(
+            (target: Target): boolean => {
+                if (useNextTarget) {
+                    useNextTarget = target.amount < this.total;
+
+                    return true;
+                }
+
+                return false;
+            },
+        );
     }
 
     get targetTime(): number {
-        return Date.parse('2021-02-14');
+        const targets = this.targets;
+
+        return targets[targets.length - 1].date;
+    }
+
+    get target(): number {
+        return this.targets.reduce((total: number, target: Target) => target.amount + total, 0);
     }
 
     get total(): number {
