@@ -93,7 +93,7 @@ export default class VaccinationStore extends VuexModule {
             type: 'is-danger',
         },
         {
-            amount: 32200000,
+            amount: 17200000,
             progress: 0,
             date: Date.parse('2021-04-30'),
             type: 'is-warning',
