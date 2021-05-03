@@ -2,7 +2,7 @@ import {action, createModule} from 'vuex-class-component';
 import VaccinationPeriod from '@/models/VaccinationPeriod';
 import {GovCoronavirusVaccinations, NhsVaccinationGroup, NhsVaccinationPeriod} from '@/store/vaccinations/types';
 import PeriodsCollection from '@/models/PeriodsCollection';
-import Cov19API, {StructureType} from '@publichealthengland/uk-covid19';
+import Cov19API, {StructureType} from '@publichealthengland/uk-covid19/lib/UKCovid19';
 
 export const VuexModule = createModule({
     namespaced: 'vaccinations',
