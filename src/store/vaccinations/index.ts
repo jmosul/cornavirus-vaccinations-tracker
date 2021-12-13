@@ -35,7 +35,9 @@ const formatData = function(data: GovCoronavirusVaccinations[]) {
         const groups = periodData.map((group) => ({
             group: group.areaName,
             dose1: group.cumPeopleVaccinatedFirstDoseByPublishDate,
-            dose2: 0,
+            dose2: group.cumPeopleVaccinatedSecondDoseByPublishDate,
+            dose3: 0,
+            booster1: group.cumPeopleVaccinatedBoosterDoseByPublishDate,
         } as NhsVaccinationGroup));
 
         return {
@@ -53,6 +55,8 @@ const getData = async function(): Promise<PeriodsCollection> {
         date: 'date',
         areaName: 'areaName',
         cumPeopleVaccinatedFirstDoseByPublishDate: 'cumPeopleVaccinatedFirstDoseByPublishDate',
+        cumPeopleVaccinatedSecondDoseByPublishDate: 'cumPeopleVaccinatedSecondDoseByPublishDate',
+        cumPeopleVaccinatedBoosterDoseByPublishDate: 'cumPeopleVaccinatedBoosterDoseByPublishDate',
     };
 
     const filters = ['areaType=nation'];
@@ -70,6 +74,8 @@ const getData = async function(): Promise<PeriodsCollection> {
             date: structure.date,
             areaName: structure.areaName,
             cumPeopleVaccinatedFirstDoseByPublishDate: parseInt(structure.cumPeopleVaccinatedFirstDoseByPublishDate),
+            cumPeopleVaccinatedSecondDoseByPublishDate: parseInt(structure.cumPeopleVaccinatedSecondDoseByPublishDate),
+            cumPeopleVaccinatedBoosterDoseByPublishDate: structure.cumPeopleVaccinatedBoosterDoseByPublishDate ? parseInt(structure.cumPeopleVaccinatedBoosterDoseByPublishDate) : 0,
         } as GovCoronavirusVaccinations;
     }));
 };

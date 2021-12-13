@@ -65,7 +65,6 @@ export default class TargetProgress extends DataComponent {
     }
 
     private start() {
-        console.log('start');
         this.targets = this.vaccinations.targets;
 
         this.formattedTargetDate = format(
@@ -76,7 +75,6 @@ export default class TargetProgress extends DataComponent {
         this.formattedTarget = this.vaccinations.target.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
         this.totalTarget = this.vaccinations.target * 10000;
-        console.log(this.targets, this.totalTarget);
 
         this.setTotal(this.vaccinations.total);
         this.rate = Math.floor(this.vaccinations.rate / 100) / 10;

@@ -2,6 +2,8 @@ export interface NhsVaccinationGroup {
     group: string;
     dose1: number;
     dose2: number;
+    dose3: number;
+    booster1: number;
 }
 
 export interface NhsVaccinationPeriod {
@@ -14,5 +16,7 @@ export interface GovCoronavirusVaccinations {
     date: string;
     areaName: string;
     cumPeopleVaccinatedFirstDoseByPublishDate: number;
+    cumPeopleVaccinatedSecondDoseByPublishDate: number;
+    cumPeopleVaccinatedBoosterDoseByPublishDate: number;
     timestamp?: number;
 }
