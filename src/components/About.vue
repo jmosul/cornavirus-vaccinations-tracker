@@ -20,6 +20,12 @@
                 <span class="has-text-primary has-text-weight-bold">hope</span>
                 as we work our way back towards normality.
             </p>
+
+            <p>
+                <strong>Update: </strong> The booster numbers have been added from 13th December 2021.
+                The numbers include both boosters and third vaccinations.
+                The rate is calculated based on zero boosters or third vaccination starting 30th September 2021.
+            </p>
             <p>
                 It has been a long and difficult time since the start of the pandemic, but as can be demonstrated
                 here; the end is in sight. With each tick of the tracker we are getting that little closer to
