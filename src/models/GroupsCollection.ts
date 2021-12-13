@@ -15,6 +15,10 @@ export default class GroupsCollection {
         return this.groups.reduce((total: number, {dose1}: VaccinationGroup) => total + dose1, 0);
     }
 
+    get boosted(): number {
+        return this.groups.reduce((total: number, {booster1}: VaccinationGroup) => total + booster1, 0);
+    }
+
     get first() {
         return this.groups[0];
     }

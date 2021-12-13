@@ -4,7 +4,7 @@
             {{ totalFormatted }}
         </h1>
         <h2 class="subtitle">
-            Estimated people vaccinated*
+            Estimated people {{ type }}*
         </h2>
     </div>
 </template>
@@ -19,6 +19,10 @@ export default class TotalVaccinationsHero extends DataComponent {
     public rate = 0
     public totalFormatted = ''
     private interval?: number
+
+    get type() {
+        return this.vaccinations.vacType === 'boosted' ? 'boosted' : 'vaccinated';
+    }
 
     mounted() {
         this.loadData().then(() => this.start());

@@ -56,7 +56,7 @@ const getData = async function(): Promise<PeriodsCollection> {
         areaName: 'areaName',
         cumPeopleVaccinatedFirstDoseByPublishDate: 'cumPeopleVaccinatedFirstDoseByPublishDate',
         cumPeopleVaccinatedSecondDoseByPublishDate: 'cumPeopleVaccinatedSecondDoseByPublishDate',
-        cumPeopleVaccinatedBoosterDoseByPublishDate: 'cumPeopleVaccinatedBoosterDoseByPublishDate',
+        cumPeopleVaccinatedThirdInjectionByPublishDate: 'cumPeopleVaccinatedThirdInjectionByPublishDate',
     };
 
     const filters = ['areaType=nation'];
@@ -69,13 +69,15 @@ const getData = async function(): Promise<PeriodsCollection> {
 
     const data = await api.getJSON().then((json) => json.data);
 
+    console.log('d', data);
+
     return formatData(data.map((structure: StructureType) => {
         return {
             date: structure.date,
             areaName: structure.areaName,
             cumPeopleVaccinatedFirstDoseByPublishDate: parseInt(structure.cumPeopleVaccinatedFirstDoseByPublishDate),
             cumPeopleVaccinatedSecondDoseByPublishDate: parseInt(structure.cumPeopleVaccinatedSecondDoseByPublishDate),
-            cumPeopleVaccinatedBoosterDoseByPublishDate: structure.cumPeopleVaccinatedBoosterDoseByPublishDate ? parseInt(structure.cumPeopleVaccinatedBoosterDoseByPublishDate) : 0,
+            cumPeopleVaccinatedBoosterDoseByPublishDate: structure.cumPeopleVaccinatedThirdInjectionByPublishDate ? parseInt(structure.cumPeopleVaccinatedThirdInjectionByPublishDate) : 0,
         } as GovCoronavirusVaccinations;
     }));
 };
@@ -124,6 +126,14 @@ export default class VaccinationStore extends VuexModule {
                 return this._loaded = true;
             },
         ).then(() => true);
+    }
+
+    set vacType(vacType: string) {
+        this._periods.setType(vacType);
+    }
+
+    get vacType(): string {
+        return this._periods.getVacType();
     }
 
     set periods(periods: PeriodsCollection) {

@@ -3,6 +3,7 @@ import VaccinationPeriod from '@/models/VaccinationPeriod';
 
 export default class PeriodsCollection extends Collection {
     protected items: VaccinationPeriod[] = [];
+    protected type: string = 'dose1';
 
     constructor(models: VaccinationPeriod[] = []) {
         super();
@@ -44,14 +45,63 @@ export default class PeriodsCollection extends Collection {
         }));
     }
 
+    setType(type: string) {
+        this.type = type;
+    }
+
+    getVacType(): string {
+        return this.type;
+    }
+
     get total(): number {
         return this.items.reduce(
-            (total: number, {groups}: VaccinationPeriod) => total + groups.vaccinated,
+            (total: number, {groups}: VaccinationPeriod) => {
+                const count = this.type === 'boosted' ? groups.boosted : groups.vaccinated;
+
+                return total + count;
+            },
             0,
         );
     }
 
     get first(): VaccinationPeriod {
+        if (this.type === 'boosted') {
+            return new VaccinationPeriod({
+                date: '2021-09-30',
+                timestamp: 1632960000,
+                groups: [
+                    {
+                        group: 'England',
+                        dose1: 0,
+                        dose2: 0,
+                        dose3: 0,
+                        booster1: 0,
+                    },
+                    {
+                        group: 'Northern Ireland',
+                        dose1: 0,
+                        dose2: 0,
+                        dose3: 0,
+                        booster1: 0,
+                    },
+                    {
+                        group: 'Scotland',
+                        dose1: 0,
+                        dose2: 0,
+                        dose3: 0,
+                        booster1: 0,
+                    },
+                    {
+                        group: 'Wales',
+                        dose1: 0,
+                        dose2: 0,
+                        dose3: 0,
+                        booster1: 0,
+                    },
+                ],
+            });
+        }
+
         return this.items[0];
     }
 
