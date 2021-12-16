@@ -22,6 +22,10 @@ export default class VaccinationGroup extends Model {
         return this._dose1;
     }
 
+    get dose2(): number {
+        return this._dose2;
+    }
+
     get booster1(): number {
         return this._booster1;
     }

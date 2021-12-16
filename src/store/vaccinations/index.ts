@@ -69,8 +69,6 @@ const getData = async function(): Promise<PeriodsCollection> {
 
     const data = await api.getJSON().then((json) => json.data);
 
-    console.log('d', data);
-
     return formatData(data.map((structure: StructureType) => {
         return {
             date: structure.date,

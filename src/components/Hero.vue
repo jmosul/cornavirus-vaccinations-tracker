@@ -2,14 +2,15 @@
     <div class="container has-text-centered">
         <div class="tabs is-centered is-toggle is-toggle-rounded ">
             <ul>
-                <li :class="{'is-active': !boosted}"><a @click="setDose1">Vaccinated</a></li>
-                <li :class="{'is-active': boosted}"><a @click="setBoosters">Boosted</a></li>
+                <li :class="{'is-active':  vaccinations.vacType === 'dose1'}"><a @click="setDose1">Vaccinated</a></li>
+                <li :class="{'is-active':  vaccinations.vacType === 'dose2'}"><a @click="setDose2">Second Dose</a></li>
+                <li :class="{'is-active': vaccinations.vacType === 'boosted'}"><a @click="setBoosters">Boosted</a></li>
             </ul>
         </div>
 
         <div v-if="active">
             <total-vaccinations-hero></total-vaccinations-hero>
-            <target-progress v-if="!boosted"></target-progress>
+            <target-progress v-if="showTarget"></target-progress>
             <vaccination-rate></vaccination-rate>
         </div>
     </div>
@@ -32,12 +33,23 @@ import DataComponent from '@/components/DataComponent';
 export default class Hero extends DataComponent {
     active = true;
 
-    get boosted() {
-        return this.vaccinations.vacType === 'boosted';
+    get showTarget() {
+        switch (this.vaccinations.vacType) {
+            case 'dose2':
+            case 'boosted':
+                return false;
+
+            default:
+                return true;
+        }
     }
 
     setDose1() {
         this.setType('dose1');
+    }
+
+    setDose2() {
+        this.setType('dose2');
     }
 
     setBoosters() {

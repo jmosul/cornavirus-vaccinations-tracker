@@ -1,5 +1,8 @@
 import Collection from '@/models/Collection';
 import VaccinationPeriod from '@/models/VaccinationPeriod';
+import BoostedVaccinationPeriod from '@/models/initials/BoostedVaccinationPeriod';
+import FirstDoseVaccinationPeriod from '@/models/initials/FirstDoseVaccinationPeriod';
+import SecondDoseVaccinationPeriod from '@/models/initials/SecondDoseVaccinationPeriod';
 
 export default class PeriodsCollection extends Collection {
     protected items: VaccinationPeriod[] = [];
@@ -9,40 +12,7 @@ export default class PeriodsCollection extends Collection {
         super();
 
         this.items = models;
-        this.items.unshift(new VaccinationPeriod({
-            date: '2020-12-07',
-            timestamp: 1607299200,
-            groups: [
-                {
-                    group: 'England',
-                    dose1: 0,
-                    dose2: 0,
-                    dose3: 0,
-                    booster1: 0,
-                },
-                {
-                    group: 'Northern Ireland',
-                    dose1: 0,
-                    dose2: 0,
-                    dose3: 0,
-                    booster1: 0,
-                },
-                {
-                    group: 'Scotland',
-                    dose1: 0,
-                    dose2: 0,
-                    dose3: 0,
-                    booster1: 0,
-                },
-                {
-                    group: 'Wales',
-                    dose1: 0,
-                    dose2: 0,
-                    dose3: 0,
-                    booster1: 0,
-                },
-            ],
-        }));
+        this.items.unshift(FirstDoseVaccinationPeriod);
     }
 
     setType(type: string) {
@@ -56,53 +26,31 @@ export default class PeriodsCollection extends Collection {
     get total(): number {
         return this.items.reduce(
             (total: number, {groups}: VaccinationPeriod) => {
-                const count = this.type === 'boosted' ? groups.boosted : groups.vaccinated;
+                switch(this.type) {
+                    case 'boosted':
+                        return total + groups.boosted;
 
-                return total + count;
+                    case 'dose2':
+                        return total + groups.second;
+
+                    default:
+                        return total + groups.vaccinated;
+                }
             },
             0,
         );
     }
 
     get first(): VaccinationPeriod {
-        if (this.type === 'boosted') {
-            return new VaccinationPeriod({
-                date: '2021-09-30',
-                timestamp: 1632960000,
-                groups: [
-                    {
-                        group: 'England',
-                        dose1: 0,
-                        dose2: 0,
-                        dose3: 0,
-                        booster1: 0,
-                    },
-                    {
-                        group: 'Northern Ireland',
-                        dose1: 0,
-                        dose2: 0,
-                        dose3: 0,
-                        booster1: 0,
-                    },
-                    {
-                        group: 'Scotland',
-                        dose1: 0,
-                        dose2: 0,
-                        dose3: 0,
-                        booster1: 0,
-                    },
-                    {
-                        group: 'Wales',
-                        dose1: 0,
-                        dose2: 0,
-                        dose3: 0,
-                        booster1: 0,
-                    },
-                ],
-            });
-        }
+        switch (this.type) {
+            case 'boosted':
+                return BoostedVaccinationPeriod;
+            case 'dose2':
+                return SecondDoseVaccinationPeriod;
 
-        return this.items[0];
+            default:
+                return this.items[0];
+        }
     }
 
     get last(): VaccinationPeriod {
