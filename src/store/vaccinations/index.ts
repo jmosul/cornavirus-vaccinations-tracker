@@ -47,7 +47,16 @@ const formatData = function(data: GovCoronavirusVaccinations[]) {
         } as NhsVaccinationPeriod;
     }).map((period) => new VaccinationPeriod(period));
 
-    return new PeriodsCollection(formattedData);
+    const collection = new PeriodsCollection(formattedData);
+
+    const url = new URL(window.location.toString());
+    const type = url.searchParams.get('v');
+
+    if (type) {
+        collection.setType(type);
+    }
+
+    return collection;
 };
 
 const getData = async function(): Promise<PeriodsCollection> {
