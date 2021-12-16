@@ -10,7 +10,6 @@
 
         <div v-if="active">
             <total-vaccinations-hero></total-vaccinations-hero>
-            <target-progress v-if="showTarget"></target-progress>
             <vaccination-rate></vaccination-rate>
         </div>
     </div>
