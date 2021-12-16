@@ -2,9 +2,9 @@
     <div class="container has-text-centered">
         <div class="tabs is-centered is-toggle is-toggle-rounded ">
             <ul>
-                <li :class="{'is-active':  vaccinations.vacType === 'dose1'}"><a @click="setDose1">Vaccinated</a></li>
-                <li :class="{'is-active':  vaccinations.vacType === 'dose2'}"><a @click="setDose2">Second Dose</a></li>
-                <li :class="{'is-active': vaccinations.vacType === 'boosted'}"><a @click="setBoosters">Boosted</a></li>
+                <li :class="{'is-active':  vaccinations.vacType === 'dose1'}"><a @click="setDose1">1st Dose</a></li>
+                <li :class="{'is-active':  vaccinations.vacType === 'dose2'}"><a @click="setDose2">2nd Dose</a></li>
+                <li :class="{'is-active': vaccinations.vacType === 'boosted'}"><a @click="setBoosters">Booster</a></li>
             </ul>
         </div>
 
